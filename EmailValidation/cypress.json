@@ -2,5 +2,12 @@
   "defaultCommandTimeout": 30000,
   "responseTimeout": 30000,
   "requestTimeout": 30000,
-  "integrationFolder": "cypress/integration/spec"
+  "integrationFolder": "cypress/integration/spec",
+  "reporter":"mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/results",
+    "overwrite": false,
+    "html": false,
+    "json": true
+  }
 }
