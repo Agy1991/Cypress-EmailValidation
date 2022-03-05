@@ -1,7 +1,6 @@
 /// <reference types="cypress-mailslurp" />
 
-describe("user sign up test with mailslurp plugin", function () {
-    // we will add tests here
+describe("Testing email operations using mailslurp plugin", function () {
     // use cypress-mailslurp plugin to create an email address before test
     before(function () {
         return cy.mailslurp()
@@ -13,21 +12,17 @@ describe("user sign up test with mailslurp plugin", function () {
             })
     });
 
-    it("01 - can load the demo application", function () {
-        // get wrapped email address and assert contains a mailslurp email address
+    it("01 - verify demo application is loading", function () {
         expect(this.emailAddress).to.contain("@mailslurp");
         // visit the demo application
         cy.visit("https://playground.mailslurp.com")
         cy.title().should('contain', 'React App');
     });
 
-    it("02 - can sign up using email address", function () {
-        // click sign up and fill out the form
+    it("02 - verify if user can sign up using email address", function () {
         cy.clickElement('[data-test=sign-in-create-account-link]');
-        // use the email address and a test password
         cy.enterText("[name=email]",this.emailAddress);
         cy.enterText("[name=password]",`${Cypress.env('USER_PASSWORD')}`);
-        // click the submit button
         cy.clickElement("[data-test=sign-up-create-account-button]");
     });
 
@@ -42,17 +37,13 @@ describe("user sign up test with mailslurp plugin", function () {
     });
     
     it("05 - can sign in with confirmed account", function () {
-        // use the email address and a test password
         cy.enterText("[data-test=username-input]",this.emailAddress);
         cy.enterText("[data-test=sign-in-password-input]",`${Cypress.env('USER_PASSWORD')}`);
-        // click the submit button
         cy.clickElement("[data-test=sign-in-sign-in-button]");
     });
 
     it("06 - can see welcome screen", function () {
-        // click sign up and fill out the form
         cy.get("h1").should("contain", "Welcome");
     });
-
     
 });
