@@ -19,5 +19,6 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = (on: any, config: any) => {
   config.env.MAILSLURP_API_KEY = process.env.MAILSLURP_API_KEY;
+  config.env.USER_PASSWORD = process.env.USER_PASSWORD;
   return config;
 }
